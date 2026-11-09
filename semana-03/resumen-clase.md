@@ -4,54 +4,47 @@
 
 ---
 
-## Introducción a la semana
+## En esta semana
 
-En la experiencia anterior aprendimos a estructurar contenidos mediante HTML. Ahora, a ese documento, le daremos su **apariencia visual**.
-
-Dar estilo significa aplicar propiedades a los textos: color y grosor de tipografía, alineamiento, colores de fondo, interlineados. Para ello necesitamos aprender **CSS (Cascade Style Sheets u Hojas de Estilo en Cascada)**, el lenguaje que controla la apariencia.
-
-> 💡 El contenido (HTML) va separado de su apariencia (CSS). Esto permite cambiar el look del sitio sin editar el HTML.
+| | |
+|---|---|
+| **Tema** | Creando mis primeras reglas de CSS |
+| **Actividad** | Formativa: *Aplicando CSS en una estructura HTML* |
+| **Clase sincrónica** | Martes 3 de noviembre, 21:00 hrs. (la grabación queda en el foro semanal) |
+| **Entrega** | Lunes 9 de noviembre de 2026, 23:59 hrs., por AVA |
 
 ---
 
-## Resultado de Aprendizaje e Indicadores de Logro
+## Introducción a la semana
 
-**El estudiante será capaz de:**
-- Ejecutar código CSS considerando códigos gráficos, con el propósito de asignar apariencia visual al contenido web adaptable a múltiples dispositivos.
+En la experiencia anterior estructuraste los contenidos de tu blog con HTML. Ahora le daremos su **apariencia visual**.
 
-**Indicadores de logro trabajados esta semana:**
-- **IL 8.** Crea archivo CSS, utilizando nomenclatura y vinculación, siguiendo buenas prácticas.
-- **IL 9.** Efectúa la codificación del documento, utilizando la sintaxis de código y considerando herencias y tipos de selectores.
-- **IL 10.** Aplica las reglas de CSS para la diagramación de estructura de archivo según requerimiento visual.
+Dar estilo significa aplicar propiedades a los textos: color y grosor de la tipografía, alineación, colores de fondo e interlineados. Para eso usamos **CSS (Cascading Style Sheets u Hojas de Estilo en Cascada)**, el lenguaje que controla cómo se ve una página.
+
+> 💡 El contenido (HTML) va separado de su apariencia (CSS). Así puedes cambiar el look de todo el sitio sin tocar el HTML.
 
 **Preguntas activadoras:**
 - ¿Cómo cambio la tipografía de mi sitio?
 - ¿De qué forma alineo los textos?
 - ¿Cómo cambio el color de la tipografía?
 
----
-
-## Contenidos desarrollados
-
-### 1. ¿Qué es CSS?
-
-CSS es un lenguaje de hojas de estilo. Se le conoce como **hojas de estilo en cascada** porque puede haber varias hojas y las propiedades se heredan entre ellas.
-
-Funciona junto con HTML y controla el diseño y presentación del sitio web: fuentes, colores, tamaños, etc.
-
-> Si HTML es el esqueleto de una página, CSS es la piel, el pelo y la ropa.
-
-**Diferencia clave:** HTML usa `< >` y CSS usa `{ }`.
+**Conceptos clave:** hojas de estilo · regla CSS · selectores · propiedades · valores · herencia.
 
 ---
 
-### 2. Sintaxis de una regla CSS
+## 1. ¿Qué es CSS?
 
-Una regla CSS tiene tres partes:
+CSS es un lenguaje de hojas de estilo. Se llama **«en cascada»** porque puedes tener varias hojas y las propiedades se van heredando entre ellas.
 
-- **Selector:** el elemento HTML al que se aplica el estilo.
-- **Propiedad:** qué aspecto se define (ej: color, font-size).
-- **Valor:** el valor de esa propiedad (ej: red, 16px).
+> Si el HTML es el esqueleto de la página, el CSS es la piel, el pelo y la ropa.
+
+HTML y CSS son lenguajes distintos: HTML usa `< >` y CSS usa `{ }`.
+
+---
+
+## 2. Sintaxis de una regla CSS
+
+Una regla tiene un **selector** y una **declaración** entre llaves. La declaración está formada por **propiedad** y **valor**.
 
 ```css
 selector {
@@ -59,177 +52,165 @@ selector {
 }
 ```
 
-**Ejemplo:**
+- **Selector:** el elemento HTML al que le aplicas el estilo.
+- **Propiedad:** lo que quieres definir (color, tipografía, tamaño…).
+- **Valor:** cómo quieres que quede (naranjo, Helvetica, 24px…).
+
+Un selector puede tener varias declaraciones, cada una terminada en punto y coma `;`:
+
 ```css
 h1 {
-  color: #f90000;
-  font-family: Helvetica;
+  color: #f90;          /* naranjo (equivale a #ff9900) */
+  font-family: Helvetica, Arial, sans-serif;
 }
 ```
 
-Un selector puede tener **múltiples declaraciones**, cada una separada por punto y coma `;`.
+---
+
+## 3. Tipos de selectores
+
+| Selector | Sintaxis | Qué selecciona |
+|----------|----------|----------------|
+| Elemento | `h2 { }` | Todas las etiquetas de ese tipo |
+| Clase | `.color-marca { }` | Todos los elementos con `class="color-marca"` (se puede repetir) |
+| ID | `#home { }` | El único elemento con `id="home"` |
+| Universal | `* { }` | Todos los elementos |
+| Combinador descendiente | `.cabecera h1 { }` | Los `h1` que están **dentro** de `.cabecera` |
+| Atributo | `a[href] { }` | Elementos que tienen ese atributo |
+
+**Reglas para nombrar clases e ID:** sin caracteres especiales, sin espacios, en minúsculas, sin empezar con números y con nombres que describan su función.
+
+> 📌 La actividad de esta semana pide usar selectores de **clase**, de **elemento** y **combinadores**.
 
 ---
 
-### 3. Tipos de selectores
+## 4. Ubicación de los estilos
 
-| Selector | Sintaxis | Descripción |
-|----------|----------|-------------|
-| Elemento | `p { }` | Selecciona todas las etiquetas de ese tipo |
-| Clase | `.nombre { }` | Selecciona elementos con esa clase |
-| ID | `#nombre { }` | Selecciona el elemento con ese ID |
-| Universal | `* { }` | Selecciona todos los elementos |
-| Combinador descendiente | `nav a { }` | Selecciona `<a>` dentro de `<nav>` |
-| Combinador hijo | `ul > li { }` | Solo hijos directos |
-| Atributo | `input[type="text"] { }` | Elementos con ese atributo |
+| Ubicación | ¿Cómo? | ¿Recomendada? |
+|-----------|--------|---------------|
+| **Hoja externa** | Archivo `style.css` en `assets/css/`, vinculado con `<link>` | ✅ Sí: un cambio actualiza todo el sitio |
+| Etiqueta `<style>` | Reglas dentro del `<head>` de una página | ❌ Solo afecta a esa página |
+| Estilo en línea | Atributo `style=""` en una etiqueta | ❌ Solo afecta a esa etiqueta |
+
+La hoja externa se vincula en el `<head>`, **debajo del `<title>`**:
+
+```html
+<title>Mi blog</title>
+<link rel="stylesheet" href="assets/css/style.css">
+```
+
+> ⚠️ Si la página está dentro de una subcarpeta, la ruta cambia: `href="../assets/css/style.css"`. El `../` sube un nivel.
 
 ---
 
-### 4. Ubicación de los estilos
+## 5. Propiedades de texto
 
-Hay tres formas de incluir CSS en HTML:
+| Propiedad | Para qué sirve | Valores de ejemplo |
+|-----------|----------------|--------------------|
+| `font-family` | Familia tipográfica | `"Trebuchet MS", Verdana, sans-serif` |
+| `font-size` | Tamaño de la letra | `16px`, `1.5em`, `1rem`, `120%` |
+| `color` | Color del texto | `#ff0000`, `rgb(255, 0, 0)`, `tomato` |
+| `font-weight` | Grosor | `normal`, `bold`, `100`–`900` |
+| `font-style` | Cursiva | `normal`, `italic`, `oblique` |
+| `text-transform` | Mayúsculas y minúsculas | `uppercase`, `lowercase`, `capitalize` |
+| `text-align` | Alineación | `left`, `center`, `right`, `justify` |
+| `text-decoration` | Subrayado y otras líneas | `none`, `underline`, `line-through` |
 
-**1. Hoja externa (recomendada) ✅**
-```html
-<link rel="stylesheet" href="assets/styles.css">
-```
-Separación total del HTML y CSS. Permite reutilizar estilos en múltiples páginas.
+**Sobre `font-family`:** el navegador solo muestra fuentes instaladas en el equipo de quien visita el sitio. Por eso se escribe una **lista**: si la primera no está, usa la siguiente. Los nombres de más de una palabra van entre comillas. Servicios como Google Fonts entregan la fuente desde internet.
 
-**2. Etiqueta `<style>` en el `<head>`**
-```html
-<head>
-  <style>
-    p { color: blue; }
-  </style>
-</head>
-```
+**Sobre las unidades de `font-size`:** `px` es fija; `em` y `%` dependen del elemento padre; `rem` depende del tamaño base del `<html>`.
 
-**3. Estilo en línea (no recomendado ❌)**
-```html
-<p style="color: blue;">Texto</p>
-```
-Dificulta el mantenimiento del código.
-
----
-
-### 5. Propiedades de texto
-
-#### `font-family` — Familia tipográfica
-```css
-p { font-family: Arial, Helvetica, sans-serif; }
-```
-Siempre incluir fuentes alternativas separadas por coma.
-
-#### `font-size` — Tamaño de fuente
-```css
-h1 { font-size: 32px; }
-p  { font-size: 1rem; }
-```
-
-#### `color` — Color del texto
-
-Formatos disponibles:
-- **Hexadecimal:** `color: #ff0000;`
-- **RGB:** `color: rgb(255, 0, 0);`
-- **RGBA (con opacidad):** `color: rgba(255, 0, 0, 0.5);`
-- **HSL:** `color: hsl(0, 100%, 50%);`
-- **Por nombre:** `color: red;`
-
-#### `font-weight` — Grosor del texto
-```css
-p { font-weight: bold; }         /* normal | bold | lighter | bolder */
-p { font-weight: 700; }          /* valores del 100 al 900 */
-```
-
-#### `font-style` — Estilo de fuente
-```css
-em { font-style: italic; }       /* normal | italic | oblique */
-```
-
-#### `text-transform` — Transformar texto
-```css
-h1 { text-transform: uppercase; } /* none | uppercase | lowercase | capitalize */
-```
-
-#### `text-align` — Alineación del texto
-```css
-p { text-align: justify; }       /* left | center | right | justify */
-```
 > ⚠️ `justify` no se recomienda en pantalla porque dificulta la lectura.
 
-#### `text-decoration` — Decoración
-```css
-a { text-decoration: none; }     /* none | underline | overline | line-through */
-```
+---
+
+## 6. Formas de escribir un color
+
+| Formato | Ejemplo (rojo) | Nota |
+|---------|----------------|------|
+| Hexadecimal | `#ff0000` | `#RRGGBB`, de `00` a `ff` |
+| RGB | `rgb(255, 0, 0)` | Cada canal de 0 a 255 |
+| RGBA | `rgba(255, 0, 0, 0.5)` | El cuarto valor es la opacidad (0 a 1) |
+| HSL | `hsl(0, 100%, 50%)` | Tono (0–360), saturación y luminosidad |
+| Nombre | `red`, `tomato` | Lista de nombres predefinidos |
+
+Para armar una paleta puedes usar [Adobe Color](https://color.adobe.com).
 
 ---
 
-### 6. Background — Fondo
+## 7. Fondos
 
-#### `background-color` — Color de fondo
 ```css
-header { background-color: #222222; }
-section { background-color: rgba(0, 0, 0, 0.5); }
-```
+.cabecera {
+  background-color: #4a3221;
+}
 
-#### `background-image` — Imagen de fondo
-```css
 body {
-  background-image: url("assets/img/fondo.jpg");
-  background-repeat: no-repeat; /* no-repeat | repeat | repeat-x | repeat-y */
+  background-image: url("../img/fondo.jpg");
+  background-repeat: no-repeat;   /* repeat | repeat-x | repeat-y | no-repeat */
 }
 ```
+
+> ⚠️ La ruta de `url()` se escribe **desde la ubicación del archivo CSS**. Si tu hoja está en `assets/css/` y la imagen en `assets/img/`, la ruta es `../img/fondo.jpg`.
 
 ---
 
-### 7. Herencia en CSS
+## 8. Herencia
 
-CSS hereda propiedades del elemento padre a sus hijos.
+Los elementos hijos heredan muchas propiedades de su elemento padre. Si declaras la tipografía en `body`, todo el sitio la usa, salvo donde declares otra:
 
 ```css
-/* Si defino esto en body, TODOS los elementos lo heredan */
 body {
-  font-family: Arial;
-  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Puedo sobreescribir solo donde necesito */
 h1 {
-  font-family: 'Trebuchet MS';
+  font-family: "Trebuchet MS", sans-serif;  /* solo el h1 cambia */
 }
 ```
 
-> El elemento padre de todo lo visible es `<body>`. Lo que declaras ahí se aplica a todo el sitio a menos que lo sobreescribas.
-
 ---
 
-## Actividad de la semana
+## Actividad formativa: *Aplicando CSS en una estructura HTML*
 
-**Actividad Formativa: Aplicando CSS en una estructura HTML**
+Crea **una hoja de estilos** para los **5 archivos HTML** del blog que armaste en la semana 2.
 
-Deberás crear una hoja de estilos para los 5 archivos HTML del blog armado en la semana 2, creando tus primeras reglas CSS con los siguientes **selectores**:
-- `class`
-- Elemento
-- Combinadores
+1. Crea tus primeras reglas CSS usando selectores de:
+   - clase
+   - elemento
+   - combinadores
+2. Da estilo a los textos (párrafos y encabezados) con:
+   - `font-family`
+   - `font-size`
+   - `font-weight`
+   - `text-align`
+   - `background-color` y/o `background-image`
 
-Y estilando los textos (párrafos y encabezados) con las propiedades:
-- `font-family`
-- `font-size`
-- `font-weight`
-- `text-align`
-- `background-color` y/o `background-image`
+### 📤 Formato de entrega
 
-📅 **Fecha de entrega:** Lunes 9 de noviembre de 2026 a las 23:59 hrs.
+- La carpeta de tu sitio comprimida en **.zip**.
+- El sitio **subido al hosting de Duoc** (con los datos que entrega el AVA) y la **URL** copiada en el documento de la actividad.
+- Todo se entrega por AVA hasta el **lunes 9 de noviembre de 2026, 23:59 hrs.**
+
+### 📋 ¿Cómo se revisa?
+
+Se usa una **escala de valoración** con cinco niveles: Completamente logrado (100%), Logrado (80%), Medianamente logrado (60%), Logro insuficiente (30%) y No logrado (0%).
+
+Revisa **10 aspectos**. No solo mira el CSS: también revisa tu HTML.
+- **Estructura y HTML (1 a 4):** carpeta raíz y nombres de archivos, documentos HTML según el estándar W3C, código ordenado con indentación y comentarios, y etiquetas semánticas y accesibles.
+- **Navegación y publicación (5 a 7):** proceso de publicación, archivos bien vinculados para navegar el sitio y sitio funcionando en el servidor.
+- **CSS (8 a 10):** archivo CSS bien nombrado y vinculado, sintaxis con herencia y tipos de selectores, y reglas aplicadas según el diseño.
 
 ---
 
 ## Recursos de referencia
 
-- [MDN CSS Selectores](https://developer.mozilla.org/es/docs/Web/CSS/Class_selectors)
-- [MDN Fundamentos de texto y fuentes](https://developer.mozilla.org/es/docs/Learn/CSS/Styling_text/Fundamentals)
-- [W3Schools CSS Fonts](https://www.w3schools.com/css/css_font.asp)
-- [W3Schools CSS Colors](https://www.w3schools.com/css/css_colors.asp)
-- [Adobe Color CC](https://color.adobe.com)
+- [MDN — Selectores de clase](https://developer.mozilla.org/es/docs/Web/CSS/Class_selectors)
+- [MDN — Combinador descendiente](https://developer.mozilla.org/es/docs/Web/CSS/Descendant_combinator)
+- [MDN — Fundamentos de texto y fuentes](https://developer.mozilla.org/es/docs/Learn/CSS/Styling_text/Fundamentals)
+- [W3Schools — CSS Fonts](https://www.w3schools.com/css/css_font.asp)
+- [W3Schools — CSS Colors](https://www.w3schools.com/css/css_colors.asp)
+- [Adobe Color](https://color.adobe.com)
 
 ---
 

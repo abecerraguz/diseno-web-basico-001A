@@ -9,10 +9,10 @@
 
 **Objetivo:** Practicar la creación de un archivo CSS externo y su vinculación a HTML.
 
-1. Crea un archivo llamado `estilos.css` dentro de una carpeta `assets/css/`.
+1. Crea un archivo llamado `style.css` dentro de una carpeta `assets/css/` (es el nombre y la ubicación que usa la guía).
 2. En el `<head>` de tu HTML, agrega la siguiente línea:
    ```html
-   <link rel="stylesheet" href="assets/css/estilos.css">
+   <link rel="stylesheet" href="assets/css/style.css">
    ```
 3. En tu archivo CSS escribe esta regla y guarda:
    ```css
@@ -166,13 +166,14 @@ Dado este HTML:
      background-color: #1a1a2e;
    }
    ```
-2. Agrega una imagen de fondo al `body` (usa cualquier imagen de tu proyecto o una de internet):
+2. Agrega una imagen de fondo al `body`. Usa una imagen guardada en tu carpeta `assets/img/`:
    ```css
    body {
-     background-image: url("assets/img/fondo.jpg");
+     background-image: url("../img/fondo.jpg");
      background-repeat: no-repeat;
    }
    ```
+   > ⚠️ La ruta de `url()` se escribe desde el archivo CSS. Como `style.css` está en `assets/css/`, hay que subir un nivel (`../`) para llegar a `assets/img/`.
 3. Prueba los valores `repeat`, `repeat-x` y `repeat-y`. ¿Qué hace cada uno?
 
 ---
@@ -181,7 +182,7 @@ Dado este HTML:
 
 **Objetivo:** Integrar todos los conceptos de la semana en tu blog de semana 2.
 
-Crea o mejora el archivo `estilos.css` para tu blog aplicando:
+Crea o mejora el archivo `assets/css/style.css` de tu blog aplicando:
 
 - [ ] Hoja CSS externa vinculada a los 5 archivos HTML
 - [ ] `font-family` definida en `body` (herencia para todo el sitio)

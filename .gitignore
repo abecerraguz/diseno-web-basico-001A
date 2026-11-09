@@ -11,3 +11,15 @@ CLAUDE.md
 
 # Sistema operativo
 .DS_Store
+EN-PROCESO/
+
+# Respaldos y papelera (no versionar)
+_respaldo-*/
+_to_delete/
+
+# Archivos privados del docente (nunca públicos)
+dialogo-docente.md
+solucion-*.md
+EVALUACION/
+material-semana/
+traspaso-*.md
