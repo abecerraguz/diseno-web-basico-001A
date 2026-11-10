@@ -182,7 +182,7 @@ Aplica CSS para que:
 
 **Objetivo:** Entender que `flex` va en el padre y qué alinea cada propiedad.
 
-> 🧪 Antes de empezar, juega 5 minutos con el laboratorio de [`material-semana/flexbox-guia-visual.html`](./material-semana/flexbox-guia-visual.html).
+> 🧪 Antes de empezar, juega 5 minutos con el laboratorio de la [guía visual de flexbox](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/flexbox-guia-visual.html).
 
 ```html
 <div class="platos">
@@ -353,7 +353,7 @@ Crea o mejora el CSS de tu blog verificando que tenga:
 - [ ] Al menos 1 imagen con `float` rodeada de texto
 - [ ] El sitio publicado en el servidor con URL funcionando
 
-> 📌 Este ejercicio te prepara directamente para la **Actividad Sumativa de la semana 4**: Estilando mi sitio. Compara tu resultado con el [ejemplo de la clase](./material-clase/LEEME.md).
+> 📌 Este ejercicio te prepara directamente para la **Actividad Sumativa de la semana 4**: Estilando mi sitio. Compara tu resultado con el [ejemplo de la clase](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/material-clase/).
 
 ---
 

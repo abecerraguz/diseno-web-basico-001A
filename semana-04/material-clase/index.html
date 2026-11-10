@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de Cocina Chilena</title>
+    <!-- Una sola hoja de estilos para todo el sitio (el reset va dentro, al inicio) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header class="cabecera">
+        <h1>Blog de Cocina Chilena</h1>
+        <p>Recetas tradicionales con sabor a hogar</p>
+    </header>
+
+    <!-- Menú como lista dentro de <nav>. Está en TODAS las páginas.
+         .navegacion ul es el contenedor flex: ordena los <li> en fila.
+         class="actual" marca la página en la que estoy. -->
+    <nav class="navegacion" aria-label="Menú principal">
+        <ul>
+            <li><a class="actual" href="index.html" aria-current="page">Inicio</a></li>
+            <li><a href="platos-de-fondo/charquican.html">Charquicán</a></li>
+            <li><a href="platos-de-fondo/bife-a-lo-pobre.html">Bife a lo pobre</a></li>
+            <li><a href="postres/tiramisu.html">Tiramisú</a></li>
+            <li><a href="postres/papayas-a-la-crema.html">Papayas a la crema</a></li>
+        </ul>
+    </nav>
+
+    <!-- .contenedor centra el sitio (max-width + margin auto).
+         .disposicion es flex: sus dos hijos (main y aside) quedan lado a lado. -->
+    <div class="contenedor disposicion">
+
+        <!-- Primera columna del layout: el hijo más ancho de .disposicion -->
+        <main class="contenido">
+            <h2>Bienvenidos a nuestra cocina</h2>
+            <p>
+                Este blog es un espacio dedicado a compartir recetas de la cocina chilena,
+                desde los platos de fondo más tradicionales hasta los postres más queridos.
+                Aquí encontrarás el paso a paso para preparar sabores que nos recuerdan a casa.
+            </p>
+
+            <!-- .tarjetas es el contenedor flex: ordena a sus hijos (.tarjeta) en fila -->
+            <div class="tarjetas">
+                <section class="tarjeta">
+                    <!-- La imagen va primero y ocupa todo el ancho de la tarjeta -->
+                    <img class="tarjeta-imagen" src="assets/img/platos-de-fondo.jpg" alt="Un plato de charquicán y otro de bife a lo pobre sobre una mesa de madera" width="640" height="400">
+                    <!-- .tarjeta-cuerpo lleva el padding: así la imagen llega hasta los bordes -->
+                    <div class="tarjeta-cuerpo">
+                        <h3>🍖 Platos de fondo</h3>
+                        <p>Recetas contundentes y llenas de sabor para compartir en familia.</p>
+                        <!-- .tarjeta a pasa de inline a block: cada enlace en su línea -->
+                        <a href="platos-de-fondo/charquican.html">Ver charquicán →</a>
+                        <a href="platos-de-fondo/bife-a-lo-pobre.html">Ver bife a lo pobre →</a>
+                    </div>
+                </section>
+
+                <section class="tarjeta">
+                    <img class="tarjeta-imagen" src="assets/img/postres.jpg" alt="Una porción de tiramisú y papayas con crema sobre una mesa de madera" width="640" height="400">
+                    <div class="tarjeta-cuerpo">
+                        <h3>🍮 Postres</h3>
+                        <p>Dulces para cerrar cualquier comida con una sonrisa.</p>
+                        <a href="postres/tiramisu.html">Ver tiramisú →</a>
+                        <a href="postres/papayas-a-la-crema.html">Ver papayas a la crema →</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Segunda columna del layout: el hijo más angosto de .disposicion -->
+        <aside class="lateral">
+            <h2>Sobre este blog</h2>
+            <p>Recetas caseras de la cocina chilena, probadas en familia y explicadas paso a paso.</p>
+
+            <h2>Consejo de la semana</h2>
+            <p>Lee la receta completa antes de empezar y deja todos los ingredientes listos y medidos.</p>
+        </aside>
+
+    </div>
+
+    <!-- .pie-pagina .contenedor es flex con space-between: un texto a cada extremo -->
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p>Blog de Cocina Chilena &copy; 2026</p>
+            <p>Diseño Web Básico · DUOC UC</p>
+        </div>
+    </footer>
+
+</body>
+</html>

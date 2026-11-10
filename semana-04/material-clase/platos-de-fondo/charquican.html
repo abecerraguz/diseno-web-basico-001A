@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charquicán — Blog de Cocina Chilena</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+    <header class="cabecera">
+        <h1>Blog de Cocina Chilena</h1>
+        <p>Recetas tradicionales con sabor a hogar</p>
+    </header>
+
+    <nav class="navegacion" aria-label="Menú principal">
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a class="actual" href="charquican.html" aria-current="page">Charquicán</a></li>
+            <li><a href="bife-a-lo-pobre.html">Bife a lo pobre</a></li>
+            <li><a href="../postres/tiramisu.html">Tiramisú</a></li>
+            <li><a href="../postres/papayas-a-la-crema.html">Papayas a la crema</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor disposicion">
+
+        <main class="contenido">
+            <!-- .receta usa display: flow-root para contener la imagen flotada -->
+            <article class="receta">
+                <h2>Charquicán</h2>
+                <!-- .datos-receta li pasa de block a inline: quedan en una sola línea -->
+                <ul class="datos-receta">
+                    <li>4 porciones</li>
+                    <li>45 minutos</li>
+                    <li>Dificultad: fácil</li>
+                </ul>
+
+                <!-- float: left → el párrafo rodea a la imagen -->
+                <img class="foto-receta" src="../assets/img/charquican.jpg" alt="Plato de charquicán servido con un huevo frito encima" width="240" height="180">
+                <p>El charquicán es uno de los platos más representativos de la cocina chilena. Reconfortante, nutritivo y fácil de preparar, es ideal para los días fríos. Su nombre viene del charqui, la carne seca que se usaba antiguamente, aunque hoy casi siempre se prepara con carne molida.</p>
+
+                <h3>Ingredientes (4 porciones)</h3>
+                <!-- column-count: 2 reparte la lista en dos columnas -->
+                <ul class="ingredientes">
+                    <li>500 g de carne molida o charqui</li>
+                    <li>4 papas medianas</li>
+                    <li>2 zanahorias</li>
+                    <li>1 taza de porotos verdes</li>
+                    <li>1 taza de zapallo</li>
+                    <li>1 cebolla</li>
+                    <li>2 dientes de ajo</li>
+                    <li>Sal, pimienta, comino y orégano al gusto</li>
+                </ul>
+
+                <h3>Preparación</h3>
+                <ol class="pasos">
+                    <li>Cocer las papas, zanahorias y zapallo cortados en cubos.</li>
+                    <li>En una sartén, sofreír la cebolla y el ajo picados.</li>
+                    <li>Agregar la carne y cocinar hasta que esté dorada.</li>
+                    <li>Añadir las verduras cocidas y mezclar bien.</li>
+                    <li>Machucar levemente las papas para darle consistencia.</li>
+                    <li>Sazonar con sal, pimienta, comino y orégano.</li>
+                    <li>Servir caliente. Se puede acompañar con un huevo frito.</li>
+                </ol>
+
+                <!-- .receta-pie es flex con space-between: un enlace a cada extremo -->
+                <nav class="receta-pie" aria-label="Más recetas">
+                    <a class="siguiente" href="bife-a-lo-pobre.html">Siguiente: Bife a lo pobre →</a>
+                </nav>
+            </article>
+        </main>
+
+        <aside class="lateral">
+            <h2>Sobre este blog</h2>
+            <p>Recetas caseras de la cocina chilena, probadas en familia y explicadas paso a paso.</p>
+
+            <h2>Consejo de la semana</h2>
+            <p>Lee la receta completa antes de empezar y deja todos los ingredientes listos y medidos.</p>
+        </aside>
+
+    </div>
+
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p>Blog de Cocina Chilena &copy; 2026</p>
+            <p>Diseño Web Básico · DUOC UC</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -10,14 +10,18 @@ En estas dos semanas nos enfocaremos en **CSS (Cascading Style Sheets)**, el len
 
 El trabajo práctico continúa sobre el **blog** desarrollado en semanas anteriores: primero lo estilaremos con una hoja de estilos (actividad formativa) y luego aplicaremos la diagramación completa y publicaremos el sitio en el servidor (actividad sumativa).
 
+## Sitio publicado
+
+Los ejemplos y la guía interactiva se pueden ver en la web: **<https://abecerraguz.github.io/diseno-web-basico-001A/>**
+
 ## Contenidos por semana
 
 | Semana | Tema | Contenidos principales | Actividad | Entrega | Resumen | Tutorial | Ejemplo y material |
 |--------|------|------------------------|-----------|---------|---------|----------|--------------------|
-| **Semana 3** | Creando mis primeras reglas de CSS | Qué es CSS · Sintaxis de reglas · Tipos de selectores · Ubicación de estilos · Propiedades de texto (`font-family`, `font-size`, `color`, `text-align`, etc.) · Fondos (`background-color`, `background-image`) · Herencia | Formativa: *Aplicando CSS en una estructura HTML* | Lunes 9 de noviembre de 2026, 23:59 hrs. · .zip + sitio en el hosting de Duoc con su URL | [Resumen S3](./semana-03/resumen-clase.md) | [Tutorial S3](./semana-03/tutorial-codigo.md) | [Ejemplo S3](./semana-03/material-clase/) |
-| **Semana 4** | Aplicando el estilo a mi sitio | Pseudoclases (`:link`, `:visited`, `:hover`, `:active`) · Estilado de enlaces y menús · Modelo de cajas (`margin`, `border`, `padding`, `content`) · `box-sizing` · Reset de CSS · **Diagramación con `display: flex`** (menú, dos columnas, tarjetas, pie) · `display` block e inline · `float` para imágenes · columnas | Sumativa individual: *Estilando mi sitio* (incluye publicación en servidor) | Lunes 16 de noviembre de 2026, 23:59 hrs. · URL + .zip | [Resumen S4](./semana-04/resumen-clase.md) | [Tutorial S4](./semana-04/tutorial-codigo.md) | [Ejemplo S4](./semana-04/material-clase/LEEME.md) · [Guía visual de flexbox](./semana-04/material-semana/flexbox-guia-visual.html) |
+| **Semana 3** | Creando mis primeras reglas de CSS | Qué es CSS · Sintaxis de reglas · Tipos de selectores · Ubicación de estilos · Propiedades de texto (`font-family`, `font-size`, `color`, `text-align`, etc.) · Fondos (`background-color`, `background-image`) · Herencia | Formativa: *Aplicando CSS en una estructura HTML* | Lunes 9 de noviembre de 2026, 23:59 hrs. · .zip + sitio en el hosting de Duoc con su URL | [Resumen S3](./semana-03/resumen-clase.md) | [Tutorial S3](./semana-03/tutorial-codigo.md) | *Ejemplo S3: en preparación* |
+| **Semana 4** | Aplicando el estilo a mi sitio | Pseudoclases (`:link`, `:visited`, `:hover`, `:active`) · Estilado de enlaces y menús · Modelo de cajas (`margin`, `border`, `padding`, `content`) · `box-sizing` · Reset de CSS · **Diagramación con `display: flex`** (menú, dos columnas, tarjetas, pie) · `display` block e inline · `float` para imágenes · columnas | Sumativa individual: *Estilando mi sitio* (incluye publicación en servidor) | Lunes 16 de noviembre de 2026, 23:59 hrs. · URL + .zip | [Resumen S4](./semana-04/resumen-clase.md) | [Tutorial S4](./semana-04/tutorial-codigo.md) | [Ejemplo S4 en la web](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/material-clase/) ([código](./semana-04/material-clase/LEEME.md)) · [Guía visual de flexbox](https://abecerraguz.github.io/diseno-web-basico-001A/) · [Cheat sheet de flexbox (PDF)](./semana-04/flexboxCheatSheet.pdf) |
 
-**¿Cómo usar el material?** Lee primero el **resumen** (los conceptos de la semana), luego sigue el **tutorial** paso a paso con el proyecto demo y compara con el **ejemplo de la clase**. Practica con los **ejercicios** y, en la semana 4, con la **guía visual de flexbox** (ábrela en el navegador). Después aplica todo a **tu propio blog**.
+**¿Cómo usar el material?** Lee primero el **resumen** (los conceptos de la semana), luego sigue el **tutorial** paso a paso con el proyecto demo y compara con el **ejemplo de la clase**. Practica con los **ejercicios** y, en la semana 4, con la **guía visual de flexbox**. Después aplica todo a **tu propio blog**.
 
 ## Estructura del repositorio
 
@@ -27,16 +31,15 @@ DISENO-WEB-BASICO/
 │   ├── resumen-clase.md            → Resumen teórico de la semana
 │   ├── tutorial-codigo.md          → Tutorial paso a paso con el proyecto demo
 │   ├── ejercicio-resumen-clase.md  → Ejercicios prácticos
-│   ├── material-semana/            → Guía, pauta y rúbrica oficiales (PDF)
-│   └── material-clase/             → Ejemplo: Blog de Cocina con sus primeros estilos
+│   ├── material-semana/            → Guía, pauta y rúbrica oficiales (PDF, no se versionan)
+│   └── material-clase/             → Ejemplo: Blog de Cocina con sus primeros estilos (no se versiona)
 └── semana-04/
     ├── resumen-clase.md            → Resumen teórico de la semana
     ├── tutorial-codigo.md          → Tutorial paso a paso con el proyecto demo
     ├── ejercicio-resumen-clase.md  → Ejercicios prácticos
-    ├── material-semana/
-    │   ├── flexbox-guia-visual.html → Guía interactiva de flexbox (abrir en el navegador)
-    │   └── *.pdf                    → Guía, pauta de la sumativa y rúbrica oficiales
-    └── material-clase/             → Ejemplo: Blog de Cocina diagramado con flex (ver LEEME.md)
+    ├── flexbox-guia-visual.html    → Guía interactiva de flexbox (publicada en GitHub Pages)
+    ├── flexboxCheatSheet.pdf       → Todas las propiedades de flex en una hoja
+    └── material-clase/             → Ejemplo: Blog de Cocina diagramado con flex (publicado en GitHub Pages)
 ```
 
 ## Recursos generales

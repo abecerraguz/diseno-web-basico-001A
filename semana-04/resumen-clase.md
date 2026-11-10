@@ -136,8 +136,9 @@ Estilos de borde: `solid`, `dashed`, `dotted`, `double`, `groove`, `ridge`, `ins
 
 Diagramar es decidir **dónde va cada elemento**. Hoy la herramienta principal para eso es **flexbox**. Acordamos usarla en el curso porque es como se diagrama en la industria. La guía oficial no la incluye: es un complemento de clase.
 
-> 🧪 **Guía visual interactiva:** abre [`material-semana/flexbox-guia-visual.html`](./material-semana/flexbox-guia-visual.html) en el navegador y mueve los controles.
-> 📎 **Ejemplo de la clase:** [`material-clase/`](./material-clase/LEEME.md) tiene el Blog de Cocina diagramado completo con flex.
+> 🧪 **Guía visual interactiva:** [ábrela en la web](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/flexbox-guia-visual.html) y mueve los controles. También puedes descargar [`flexbox-guia-visual.html`](./flexbox-guia-visual.html) y abrirla en tu navegador.
+> 📄 **Cheat sheet de flexbox:** [`flexboxCheatSheet.pdf`](./flexboxCheatSheet.pdf) reúne todas las propiedades del contenedor y de los hijos en una hoja. Tenla a mano mientras diagramas.
+> 📎 **Ejemplo de la clase:** [míralo publicado](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/material-clase/): el Blog de Cocina diagramado completo con flex. El código está en [`material-clase/`](./material-clase/LEEME.md).
 
 ### Flex en 3 ideas
 
@@ -329,6 +330,7 @@ Cada criterio tiene cinco niveles: Completamente logrado, Logrado (errores hasta
 
 - [MDN — El modelo de caja](https://developer.mozilla.org/es/docs/Learn/CSS/Building_blocks/The_box_model)
 - [MDN — Flexbox](https://developer.mozilla.org/es/docs/Learn/CSS/CSS_layout/Flexbox)
+- [Cheat sheet de flexbox (PDF)](./flexboxCheatSheet.pdf) — todas las propiedades de flex en una hoja
 - [Flexbox Froggy](https://flexboxfroggy.com/#es) — juego en español para practicar flex
 - [MDN — Floats](https://developer.mozilla.org/es/docs/Learn/CSS/CSS_layout/Floats)
 - [W3Schools — CSS Box Sizing](https://www.w3schools.com/css/css3_box-sizing.asp)

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Web Básico · Material de clase</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #3d2f23;
+            background-color: #faf6ef;
+        }
+        .cabecera {
+            background-color: #4a3221;
+            color: #faf6ef;
+            padding: 48px 20px 40px;
+        }
+        .contenedor {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .etiqueta {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: #f2c14e;
+            color: #4a3221;
+        }
+        h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 42px;
+            line-height: 1.2;
+            margin: 14px 0 8px;
+        }
+        .cabecera p { margin: 0; color: #e8dac5; font-size: 18px; }
+        main.contenedor { padding-top: 32px; padding-bottom: 56px; }
+        h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #8f4426;
+            font-size: 28px;
+            margin: 0 0 16px;
+        }
+        .tarjetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .tarjeta {
+            flex: 1 1 280px;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border: 1px solid #d9c6a5;
+            border-top: 5px solid #a8512e;
+            border-radius: 8px;
+            overflow: hidden;
+            color: inherit;
+            text-decoration: none;
+        }
+        .tarjeta img {
+            display: block;
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-bottom: 1px solid #d9c6a5;
+        }
+        .tarjeta-cuerpo { flex: 1; padding: 18px 20px; }
+        .tarjeta h3 { margin: 0 0 6px; font-size: 21px; color: #4a3221; }
+        .tarjeta p { margin: 0 0 10px; }
+        .ver { font-weight: bold; color: #8f4426; text-decoration: underline; }
+        .tarjeta:hover { border-top-color: #4a3221; }
+        .tarjeta:hover .ver { color: #4a3221; }
+        .nota { margin-top: 28px; font-size: 15px; }
+        .nota a { color: #8f4426; }
+        .pie-pagina {
+            background-color: #4a3221;
+            color: #e8dac5;
+            font-size: 14px;
+            padding: 16px 0;
+        }
+        .pie-pagina .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .pie-pagina p { margin: 0; }
+        @media (max-width: 600px) { h1 { font-size: 32px; } }
+    </style>
+</head>
+<body>
+
+    <header class="cabecera">
+        <div class="contenedor">
+            <span class="etiqueta">DFD2201 · Semanas 3 y 4</span>
+            <h1>Diseño Web Básico</h1>
+            <p>Ejemplos y material complementario de la clase. Duoc UC, Campus Virtual.</p>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <h2>Semana 4 · Aplicando el estilo a mi sitio</h2>
+
+        <div class="tarjetas">
+            <a class="tarjeta" href="semana-04/material-clase/index.html">
+                <img src="semana-04/material-clase/assets/img/platos-de-fondo.jpg" alt="Platos de charquicán y bife a lo pobre sobre una mesa de madera" width="640" height="400">
+                <div class="tarjeta-cuerpo">
+                    <h3>Ejemplo de la clase: Blog de Cocina Chilena</h3>
+                    <p>El blog diagramado con flex: menú, dos columnas, tarjetas con imagen y pie de página. Incluye block, inline, float y columnas.</p>
+                    <span class="ver">Ver el ejemplo →</span>
+                </div>
+            </a>
+
+            <a class="tarjeta" href="semana-04/flexbox-guia-visual.html">
+                <img src="semana-04/material-clase/assets/img/postres.jpg" alt="Tiramisú y papayas con crema sobre una mesa de madera" width="640" height="400">
+                <div class="tarjeta-cuerpo">
+                    <h3>Guía visual de flexbox</h3>
+                    <p>Laboratorio interactivo: mueve los controles y mira cómo se ordenan los elementos. Con los patrones del blog y los errores frecuentes.</p>
+                    <span class="ver">Abrir la guía →</span>
+                </div>
+            </a>
+        </div>
+
+        <p class="nota">¿Quieres ver el código? Haz clic derecho → <strong>Ver código fuente</strong> en cualquier página del ejemplo, o revisa el <a href="https://github.com/abecerraguz/diseno-web-basico-001A">repositorio en GitHub</a> con los resúmenes, tutoriales y ejercicios.</p>
+    </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <p>Diseño Web Básico · EXP2 · Campus Virtual Duoc UC</p>
+            <p>Prof. Alejandro Becerra</p>
+        </div>
+    </footer>
+
+</body>
+</html>

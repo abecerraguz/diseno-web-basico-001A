@@ -1,0 +1,457 @@
+/* ================================================
+   BLOG DE COCINA CHILENA
+   Diseño Web Básico - EXP2 Semana 4
+   Archivo: assets/css/style.css
+   Actividad Sumativa: Estilando mi sitio
+
+   Una sola hoja de estilos para todo el sitio:
+   0. Reset de Eric Meyer (siempre primero)
+   1. box-sizing
+   2. Estilos base (textos, enlaces del contenido)
+   3. Cabecera
+   4. Menú de navegación → display: flex
+   5. Diagramación de la página → contenedor + flex
+   6. Contenido y tarjetas → modelo de cajas + flex
+   7. Columna lateral
+   8. Recetas → inline, block, float, columnas
+   9. Pie de página → flex
+
+   PALETA DE COLORES DEL SITIO
+   Café oscuro:  #4a3221  (cabecera, pie y hover del menú)
+   Café medio:   #6b4a2f  (menú y subtítulos)
+   Terracota:    #8f4426  (títulos y enlaces del contenido)
+   Terracota cl: #a8512e  (solo bordes decorativos)
+   Crema claro:  #faf6ef  (fondo de página)
+   Crema cálido: #f3e9d8  (tarjetas y columna lateral)
+   Borde suave:  #d9c6a5
+   Texto:        #3d2f23  (casi negro cálido)
+
+   Nota: el enlace terracota pasó de #a8512e a #8f4426.
+   Sobre el fondo crema (#f3e9d8), #a8512e daba 4,5:1
+   y no llegaba al mínimo AA; #8f4426 da 5,78:1.
+   ================================================ */
+
+
+/* ==================================================
+   0. RESET DE ERIC MEYER (v2.0, dominio público)
+   https://meyerweb.com/eric/tools/css/reset/
+   Quita los márgenes, rellenos, viñetas y tamaños que
+   el navegador trae por defecto. VA SIEMPRE PRIMERO:
+   el navegador se queda con lo último que lee.
+   ================================================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* ============ FIN DEL RESET ============ */
+
+
+/* ==================================================
+   1. BOX-SIZING
+   El ancho que declaro incluye padding y borde.
+   Sin esto, width: 300px + padding: 20px + border: 5px
+   termina midiendo 350px.
+   ================================================== */
+* {
+    box-sizing: border-box;
+}
+
+
+/* ==================================================
+   2. ESTILOS BASE
+   Después del reset todo quedó "plano": ahora
+   nosotros decidimos cómo se ve cada cosa.
+   ================================================== */
+
+/* HERENCIA: todo el sitio hereda la tipografía y el color */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;               /* el reset lo dejó en 1 */
+    color: #3d2f23;
+    background-color: #faf6ef;
+}
+
+h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #8f4426;
+    margin-bottom: 12px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #6b4a2f;
+    margin: 20px 0 8px;             /* arriba | izq-der | abajo */
+}
+
+p {
+    margin-bottom: 12px;
+}
+
+strong {
+    font-weight: bold;              /* el reset también le quitó la negrita */
+}
+
+/* Las imágenes nunca se salen de su caja */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ENLACES DEL CONTENIDO (combinador descendiente)
+   Se ven distintos a los del menú: color terracota y subrayado */
+.contenido a,
+.lateral a {
+    color: #8f4426;
+    text-decoration: underline;
+}
+
+.contenido a:hover,
+.lateral a:hover {
+    color: #4a3221;                 /* en :hover solo declaro lo que cambia */
+    text-decoration: none;
+}
+
+
+/* ==================================================
+   3. CABECERA
+   ================================================== */
+.cabecera {
+    background-color: #4a3221;
+    color: #faf6ef;
+    text-align: center;
+    padding: 32px 20px;
+}
+
+.cabecera h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.cabecera p {
+    color: #e8dac5;
+    margin: 8px 0 0;
+}
+
+
+/* ==================================================
+   4. MENÚ DE NAVEGACIÓN → display: flex
+   flex se aplica al CONTENEDOR (el <ul>) y ordena a
+   sus HIJOS DIRECTOS (los <li>) en una fila.
+   ================================================== */
+.navegacion {
+    background-color: #6b4a2f;
+    padding: 10px 20px;
+}
+
+.navegacion ul {
+    display: flex;                  /* los <li> quedan en fila */
+    flex-wrap: wrap;                /* si no caben, bajan a otra línea */
+    justify-content: center;        /* alineación en el eje principal (horizontal) */
+    align-items: center;            /* alineación en el eje cruzado (vertical) */
+    gap: 8px;                       /* espacio entre los <li> */
+}
+
+/* Enlaces del MENÚ: distintos a los del contenido */
+.navegacion a {
+    display: block;                 /* inline → block: toda el área es clickeable */
+    color: #faf6ef;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+}
+
+.navegacion a:hover {
+    background-color: #4a3221;
+    color: #ffffff;
+}
+
+/* Página en la que estoy (selector combinado: clase dentro de clase) */
+.navegacion .actual {
+    background-color: #faf6ef;
+    color: #4a3221;
+}
+
+
+/* ==================================================
+   5. DIAGRAMACIÓN DE LA PÁGINA
+   .contenedor centra el sitio y limita su ancho.
+   .disposicion es un contenedor flex con DOS HIJOS:
+   el contenido (<main>) y la columna lateral (<aside>).
+   ================================================== */
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;                 /* auto a los lados = centrado */
+    padding: 0 16px;
+}
+
+.disposicion {
+    display: flex;
+    flex-wrap: wrap;                /* en pantallas angostas, el aside baja */
+    align-items: flex-start;        /* cada columna toma solo el alto que necesita */
+    gap: 24px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+/* flex: crece | se encoge | ancho base */
+.contenido {
+    flex: 3 1 560px;                /* crece 3 veces más que el lateral */
+}
+
+.lateral {
+    flex: 1 1 240px;
+}
+
+
+/* ==================================================
+   6. CONTENIDO Y TARJETAS → modelo de cajas + flex
+   ================================================== */
+.contenido {
+    background-color: #ffffff;
+    padding: 32px 40px;             /* arriba-abajo | izquierda-derecha */
+    border: 1px solid #d9c6a5;
+    border-radius: 8px;
+}
+
+/* .tarjetas es el CONTENEDOR flex de las .tarjeta */
+.tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Cada tarjeta: content + padding + border + margin.
+   La tarjeta NO lleva padding: así la imagen llega
+   hasta los bordes. El padding va en .tarjeta-cuerpo. */
+.tarjeta {
+    flex: 1 1 240px;                /* lado a lado si caben; si no, una debajo de otra */
+    display: flex;                  /* la tarjeta también es contenedor flex... */
+    flex-direction: column;         /* ...pero en columna: imagen arriba, cuerpo abajo */
+    background-color: #f3e9d8;
+    border: 1px solid #d9c6a5;
+    border-top: 4px solid #a8512e;  /* borde de un solo lado */
+    border-radius: 6px;
+    overflow: hidden;               /* la imagen respeta las esquinas redondeadas */
+}
+
+/* Imagen de portada de la tarjeta */
+.tarjeta-imagen {
+    display: block;                 /* quita el espacio que deja una imagen inline */
+    width: 100%;                    /* ocupa todo el ancho de la tarjeta */
+    height: 180px;                  /* todas las imágenes con el mismo alto... */
+    object-fit: cover;              /* ...recortadas sin deformarse */
+    border-bottom: 1px solid #d9c6a5;
+}
+
+.tarjeta-cuerpo {
+    flex: 1;                        /* el cuerpo ocupa el alto que sobra */
+    padding: 20px;
+}
+
+.tarjeta h3 {
+    margin-top: 0;
+}
+
+/* inline → block: cada enlace en su propia línea */
+.tarjeta a {
+    display: block;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+
+/* ==================================================
+   7. COLUMNA LATERAL
+   ================================================== */
+.lateral {
+    background-color: #f3e9d8;
+    padding: 20px;
+    border: 1px solid #d9c6a5;
+    border-left: 4px solid #a8512e;
+    border-radius: 6px;
+}
+
+.lateral h2 {
+    font-size: 20px;
+}
+
+.lateral h2 + p {
+    margin-bottom: 20px;
+}
+
+
+/* ==================================================
+   8. RECETAS
+   ================================================== */
+
+/* flow-root: la caja de la receta CONTIENE a la
+   imagen flotada aunque el texto sea corto */
+.receta {
+    display: flow-root;
+}
+
+.receta h2 {
+    font-size: 32px;
+}
+
+/* block → inline: los <li> quedan en una sola línea */
+.datos-receta {
+    margin-bottom: 16px;
+}
+
+.datos-receta li {
+    display: inline;
+    font-size: 14px;
+    color: #6b4a2f;
+    margin-right: 12px;
+}
+
+.datos-receta li + li {
+    padding-left: 12px;
+    border-left: 2px solid #d9c6a5;
+}
+
+/* float: el texto RODEA a la imagen.
+   Es el uso correcto de float hoy. Para el layout usamos flex. */
+.foto-receta {
+    float: left;
+    margin: 4px 20px 12px 0;        /* arriba | derecha | abajo | izquierda */
+    border: 4px solid #f3e9d8;
+    border-radius: 6px;
+}
+
+/* clear: los subtítulos empiezan debajo de la imagen */
+.receta h3 {
+    clear: both;
+}
+
+/* El reset quitó las viñetas y los números: los devolvemos */
+.ingredientes {
+    list-style: disc;
+    padding-left: 20px;
+    column-count: 2;                /* la lista se reparte en 2 columnas */
+    column-gap: 32px;
+}
+
+.ingredientes li {
+    break-inside: avoid;            /* un ingrediente no se corta entre columnas */
+}
+
+.pasos {
+    list-style: decimal;
+    padding-left: 24px;
+}
+
+.pasos li {
+    margin-bottom: 6px;
+}
+
+/* Navegación entre recetas: un enlace a cada extremo */
+.receta-pie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* uno a la izquierda y otro a la derecha */
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px dotted #d9c6a5;
+}
+
+/* margin-left: auto "empuja" al enlace hasta la derecha,
+   aunque esté solo (por ejemplo, en la primera receta) */
+.receta-pie .siguiente {
+    margin-left: auto;
+}
+
+
+/* ==================================================
+   9. PIE DE PÁGINA → flex con space-between
+   ================================================== */
+.pie-pagina {
+    background-color: #4a3221;
+    color: #e8dac5;
+    font-size: 14px;
+    padding: 16px 0;
+}
+
+.pie-pagina .contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.pie-pagina p {
+    margin: 0;
+}
+
+
+/* ==================================================
+   AJUSTE PARA PANTALLAS ANGOSTAS (celular)
+   ================================================== */
+@media (max-width: 600px) {
+    .cabecera h1 {
+        font-size: 30px;
+    }
+
+    .contenido {
+        padding: 24px 20px;
+    }
+
+    .ingredientes {
+        column-count: 1;
+    }
+
+    .foto-receta {
+        float: none;                /* en celular la foto va arriba, sin texto al lado */
+        display: block;
+        margin: 0 0 12px;
+    }
+}

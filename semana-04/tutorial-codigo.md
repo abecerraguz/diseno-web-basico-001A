@@ -5,8 +5,8 @@
 >
 > 🍲 **Proyecto de práctica:** seguimos con el **Blog de Cocina Chilena**, tal como quedó al terminar la semana 3. **No es tu entrega**: practica aquí y luego toma tus propias decisiones de diseño para **tu blog**.
 >
-> 📎 **Ejemplo de la clase:** el resultado final de este tutorial está en [`material-clase/`](./material-clase/LEEME.md). Úsalo para comparar cuando algo no te resulte.
-> 🧪 **Guía visual de flexbox:** abre [`material-semana/flexbox-guia-visual.html`](./material-semana/flexbox-guia-visual.html) y juega con las propiedades antes de los pasos 4, 6 y 7.
+> 📎 **Ejemplo de la clase:** [mira el resultado final publicado](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/material-clase/) y revisa su código en [`material-clase/`](./material-clase/LEEME.md). Úsalo para comparar cuando algo no te resulte.
+> 🧪 **Guía visual de flexbox:** [ábrela en la web](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/flexbox-guia-visual.html) y juega con las propiedades antes de los pasos 4, 6 y 7.
 
 **Herramientas:** VS Code y un navegador con herramientas de desarrollo (`F12`, o `Cmd + Opción + I` en Mac).
 **Tiempo estimado:** 2 a 2,5 horas.
@@ -19,7 +19,7 @@
 │  ┌──── .contenedor.disposicion (flex, fila) ────┐  │  ← paso 6
 │  │ ┌──── main.contenido ────┐ ┌─ aside.lateral ┐│  │
 │  │ │ ┌─ .tarjetas (flex) ─┐ │ │                ││  │  ← paso 7
-│  │ │ │ .tarjeta │ .tarjeta│ │ │                ││  │
+│  │ │ │ .tarjeta │ .tarjeta│ │ │                ││  │  ← cada tarjeta: imagen + cuerpo (flex en columna)
 │  │ │ └────────────────────┘ │ │                ││  │
 │  │ └────────────────────────┘ └────────────────┘│  │
 │  └──────────────────────────────────────────────┘  │
@@ -254,41 +254,73 @@
 
 ---
 
-## Paso 7 · Tarjetas lado a lado con flex
+## Paso 7 · Tarjetas con imagen, lado a lado con flex
 
-**Meta:** usar flex para un grupo de bloques que se acomodan solos.
+**Meta:** usar flex para un grupo de tarjetas que se acomodan solas, y darle a cada tarjeta una imagen de portada.
 
 **Haz esto:**
-1. En `index.html`, envuelve las dos tarjetas en un contenedor. Aprovecha de cambiar los `<div class="tarjeta">` por `<section>` y de quitar las barras `|` entre los enlaces:
+1. Guarda dos fotos horizontales en `assets/img/`. En el ejemplo son `platos-de-fondo.jpg` y `postres.jpg` (640 × 400 px).
+2. En `index.html`, envuelve las dos tarjetas en un contenedor. Cambia los `<div class="tarjeta">` por `<section>`, pon la imagen **primero** y el texto dentro de un `<div class="tarjeta-cuerpo">`. Aprovecha de quitar las barras `|` entre los enlaces:
    ```html
    <div class="tarjetas">
        <section class="tarjeta">
-           <h3>🍖 Platos de fondo</h3>
-           <p>Recetas contundentes y llenas de sabor para compartir en familia.</p>
-           <a href="platos-de-fondo/charquican.html">Ver charquicán →</a>
-           <a href="platos-de-fondo/bife-a-lo-pobre.html">Ver bife a lo pobre →</a>
+           <img class="tarjeta-imagen" src="assets/img/platos-de-fondo.jpg" alt="Un plato de charquicán y otro de bife a lo pobre sobre una mesa de madera" width="640" height="400">
+           <div class="tarjeta-cuerpo">
+               <h3>🍖 Platos de fondo</h3>
+               <p>Recetas contundentes y llenas de sabor para compartir en familia.</p>
+               <a href="platos-de-fondo/charquican.html">Ver charquicán →</a>
+               <a href="platos-de-fondo/bife-a-lo-pobre.html">Ver bife a lo pobre →</a>
+           </div>
        </section>
        <section class="tarjeta"> … </section>
    </div>
    ```
-2. Aplica `flex` al contenedor, y a cada tarjeta un ancho base:
+3. Aplica `flex` al contenedor de las tarjetas:
    ```css
    .tarjetas {
      display: flex;
      flex-wrap: wrap;
      gap: 20px;
    }
-
+   ```
+4. Actualiza `.tarjeta`: **quítale el `padding`** del paso 5 (así la imagen llega hasta los bordes) y conviértela en un contenedor flex **en columna**:
+   ```css
    .tarjeta {
-     flex: 1 1 240px;   /* crece, se encoge, ancho base 240px */
+     flex: 1 1 240px;            /* crece, se encoge, ancho base 240px */
+     display: flex;
+     flex-direction: column;     /* imagen arriba, cuerpo abajo */
+     background-color: #f3e9d8;
+     border: 1px solid #d9c6a5;
+     border-top: 4px solid #a8512e;
+     border-radius: 6px;
+     overflow: hidden;           /* la imagen respeta las esquinas redondeadas */
+   }
+   ```
+5. Estila la imagen y pasa el `padding` al cuerpo:
+   ```css
+   .tarjeta-imagen {
+     display: block;             /* quita el espacio que deja una imagen inline */
+     width: 100%;
+     height: 180px;              /* todas con el mismo alto... */
+     object-fit: cover;          /* ...recortadas sin deformarse */
+     border-bottom: 1px solid #d9c6a5;
+   }
+
+   .tarjeta-cuerpo {
+     flex: 1;                    /* ocupa el alto que sobra */
+     padding: 20px;
    }
    ```
 
-**Comprueba:** en pantalla ancha las tarjetas quedan lado a lado y con el mismo ancho; en pantalla angosta, una debajo de otra.
+**Comprueba:** en pantalla ancha las tarjetas quedan lado a lado, con el mismo ancho y la imagen pegada a los bordes; en pantalla angosta, una debajo de otra. Prueba quitar `object-fit: cover` para ver cómo se deforma la imagen.
 
 **Errores frecuentes:**
-- Aplicar `display: flex` a `.tarjeta` en vez de a `.tarjetas`.
+- Aplicar `display: flex` a `.tarjeta` esperando que las tarjetas queden en fila: eso lo hace `.tarjetas`. En `.tarjeta`, flex sirve para ordenar **su interior** en columna.
+- Dejar el `padding` en `.tarjeta`: la imagen queda con un marco crema alrededor.
+- Imagen sin `alt`, o con `alt` vacío si la imagen aporta información. Describe lo que muestra.
 - Dejar el `margin` lateral de las tarjetas y además el `gap`: se duplica el espacio.
+
+> 💡 Este paso muestra que un elemento puede ser **hijo** de un contenedor flex (`.tarjeta` dentro de `.tarjetas`) y, al mismo tiempo, **contenedor** de sus propios hijos (la imagen y el cuerpo).
 
 ---
 
@@ -502,7 +534,7 @@
 - [ ] Menú de navegación en **todas** las páginas, con las rutas correctas y la página actual marcada.
 - [ ] Enlaces con `:hover`, y los del menú se ven **distintos** a los del contenido.
 - [ ] Colores de fondo y **bordes**.
-- [ ] Layout con `display: flex`: menú en fila, contenido + lateral, tarjetas y pie de página.
+- [ ] Layout con `display: flex`: menú en fila, contenido + lateral, tarjetas con imagen y pie de página.
 - [ ] Al menos un elemento con `display: block` y otro con `display: inline`.
 - [ ] Una imagen con `float`, rodeada de texto y con un `alt` descriptivo.
 - [ ] Selectores de **clase** y **combinados**.

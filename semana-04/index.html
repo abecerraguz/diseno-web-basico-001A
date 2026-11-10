@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox · Guía visual</title>
+<style>
+  :root {
+    --cafe-oscuro: #4a3221;
+    --cafe: #6b4a2f;
+    --terracota: #8f4426;
+    --terracota-cl: #a8512e;
+    --crema: #faf6ef;
+    --crema-c: #f3e9d8;
+    --borde: #d9c6a5;
+    --texto: #3d2f23;
+    --blanco: #ffffff;
+    --principal: #1f6f78;
+    --cruzado: #b5492f;
+    --codigo-bg: #2b2019;
+    --codigo-tx: #f3e9d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--texto);
+    background: var(--crema);
+  }
+  h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; line-height: 1.25; }
+  code, pre { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+  p code, li code, td code {
+    background: var(--crema-c);
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+    padding: 0 5px;
+    font-size: 0.92em;
+  }
+  a { color: var(--terracota); }
+  a:hover { color: var(--cafe-oscuro); }
+
+  /* ---------- cabecera ---------- */
+  .portada {
+    background: var(--cafe-oscuro);
+    color: var(--crema);
+    padding: 48px 20px 40px;
+  }
+  .portada .ancho { max-width: 1100px; margin: 0 auto; }
+  .etiquetas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .etiqueta {
+    font-size: 13px; font-weight: bold; letter-spacing: .04em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px; background: var(--cafe); color: var(--crema);
+  }
+  .etiqueta.amarilla { background: #f2c14e; color: var(--cafe-oscuro); }
+  .portada h1 { font-size: 46px; margin: 0 0 10px; }
+  .portada p { font-size: 19px; max-width: 760px; margin: 0; color: #e8dac5; }
+
+  .indice {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--cafe);
+    padding: 8px 20px;
+  }
+  .indice ul {
+    list-style: none; margin: 0 auto; padding: 0; max-width: 1100px;
+    display: flex; flex-wrap: wrap; gap: 4px 6px;
+  }
+  .indice a {
+    display: block; padding: 6px 12px; border-radius: 4px;
+    color: var(--crema); text-decoration: none; font-weight: bold; font-size: 15px;
+  }
+  .indice a:hover { background: var(--cafe-oscuro); color: var(--blanco); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 8px 20px 60px; }
+  section { margin-top: 48px; scroll-margin-top: 64px; }
+  section > h2 { font-size: 32px; color: var(--terracota); margin: 0 0 6px; }
+  .bajada { margin: 0 0 22px; font-size: 18px; max-width: 780px; }
+
+  /* ---------- 3 ideas ---------- */
+  .ideas { display: flex; flex-wrap: wrap; gap: 18px; }
+  .idea {
+    flex: 1 1 260px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-top: 5px solid var(--terracota-cl);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .idea .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--cafe-oscuro); color: var(--crema); font-weight: bold;
+  }
+  .idea h3 { font-size: 21px; margin: 12px 0 6px; color: var(--cafe-oscuro); }
+  .idea p { margin: 0; }
+
+  /* ---------- ejes ---------- */
+  .ejes {
+    display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;
+  }
+  .ejes figure {
+    flex: 2 1 460px; margin: 0;
+    background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 18px;
+  }
+  .ejes figcaption { font-size: 14px; color: var(--cafe); margin-top: 10px; }
+  .ejes .explica { flex: 1 1 280px; }
+  .ejes svg { width: 100%; height: auto; display: block; }
+  .chip-eje { font-weight: bold; }
+  .chip-eje.p { color: var(--principal); }
+  .chip-eje.c { color: var(--cruzado); }
+  .boton-eje {
+    margin-top: 12px;
+    font: inherit; font-weight: bold; cursor: pointer;
+    padding: 10px 14px; border-radius: 6px;
+    border: 2px solid var(--cafe-oscuro); background: var(--blanco); color: var(--cafe-oscuro);
+  }
+  .boton-eje:hover { background: var(--cafe-oscuro); color: var(--crema); }
+
+  /* ---------- laboratorio ---------- */
+  .lab {
+    display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;
+  }
+  .controles {
+    flex: 1 1 300px;
+    background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 18px;
+  }
+  .control { margin-bottom: 16px; }
+  .control > span { display: block; font-weight: bold; font-size: 14px; margin-bottom: 6px; }
+  .control > span code { font-weight: bold; }
+  .opciones { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opciones button {
+    font: inherit; font-size: 13px; cursor: pointer;
+    padding: 5px 9px; border-radius: 4px;
+    border: 1px solid var(--borde); background: var(--crema); color: var(--texto);
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+  .opciones button:hover { border-color: var(--cafe); }
+  .opciones button[aria-pressed="true"] {
+    background: var(--cafe-oscuro); border-color: var(--cafe-oscuro); color: var(--crema);
+  }
+  .control input[type=range] { width: 100%; accent-color: var(--terracota); }
+  .fila-items { display: flex; align-items: center; gap: 10px; }
+  .fila-items button {
+    font: inherit; font-weight: bold; width: 34px; height: 34px; cursor: pointer;
+    border-radius: 6px; border: 1px solid var(--borde); background: var(--crema);
+  }
+  .control label { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; }
+  .control label code { white-space: nowrap; }
+  .control label input { margin-top: 4px; }
+
+  .resultado { flex: 2 1 480px; min-width: 0; }
+  .marco {
+    background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 14px;
+  }
+  .marco-titulo { font-size: 13px; font-weight: bold; color: var(--cafe); margin: 0 0 8px; }
+  #escenario {
+    min-height: 260px;
+    padding: 10px;
+    border: 2px dashed var(--terracota-cl);
+    border-radius: 6px;
+    background: repeating-linear-gradient(45deg, #fbf8f2, #fbf8f2 10px, #f6efe2 10px, #f6efe2 20px);
+    transition: all .2s;
+  }
+  .plato {
+    background: var(--crema-c);
+    border: 2px solid var(--cafe);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-weight: bold;
+    color: var(--cafe-oscuro);
+    min-width: 90px;
+  }
+  .plato small { display: block; font-weight: normal; font-size: 12px; color: var(--cafe); }
+  .plato:nth-child(2) { padding-bottom: 30px; }
+  .plato:nth-child(4) { padding-top: 22px; padding-bottom: 22px; }
+  pre.codigo {
+    margin: 14px 0 0;
+    background: var(--codigo-bg); color: var(--codigo-tx);
+    border-radius: 8px; padding: 16px 18px;
+    overflow-x: auto; font-size: 14.5px; line-height: 1.55;
+  }
+  pre.codigo .p { color: #9fd4db; }
+  pre.codigo .v { color: #f2c14e; }
+  pre.codigo .s { color: #e8b4a0; }
+  pre.codigo .c { color: #a8977f; }
+  .pista {
+    margin-top: 12px; padding: 12px 14px; border-radius: 6px;
+    background: #fff7e0; border-left: 4px solid #f2c14e; font-size: 15px;
+  }
+
+  /* ---------- patrones ---------- */
+  .patrones { display: flex; flex-direction: column; gap: 22px; }
+  .patron {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 18px;
+  }
+  .patron .info { flex: 1 1 300px; min-width: 0; }
+  .patron .info h3 { margin: 0 0 4px; font-size: 22px; color: var(--cafe-oscuro); }
+  .patron .info p { margin: 0 0 6px; }
+  .patron .info .donde { font-size: 14px; color: var(--cafe); }
+  .patron .vista { flex: 1 1 340px; min-width: 0; }
+  .patron pre.codigo { margin-top: 10px; font-size: 13.5px; }
+  .mini {
+    border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; background: var(--crema);
+    font-size: 13px;
+  }
+  .mini .caja-hija {
+    background: var(--crema-c); border: 1px solid var(--borde); border-radius: 4px; padding: 8px 10px;
+  }
+  /* patrón 1: menú */
+  .m-menu { background: var(--cafe); padding: 8px; }
+  .m-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .m-menu a { display: block; padding: 5px 10px; border-radius: 4px; color: var(--crema); text-decoration: none; font-weight: bold; }
+  .m-menu a:hover { background: var(--cafe-oscuro); }
+  /* patrón 2: dos columnas */
+  .m-cols { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; align-items: flex-start; }
+  .m-cols .principal { flex: 3 1 160px; background: var(--blanco); border: 1px solid var(--borde); border-radius: 4px; padding: 10px; min-height: 120px; }
+  .m-cols .lado { flex: 1 1 80px; background: var(--crema-c); border: 1px solid var(--borde); border-left: 3px solid var(--terracota-cl); border-radius: 4px; padding: 10px; min-height: 70px; }
+  /* patrón 3: tarjetas */
+  .m-tarjetas { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; }
+  .m-tarjetas .caja-hija { flex: 1 1 110px; border-top: 3px solid var(--terracota-cl); }
+  /* patrón 4: extremos */
+  .m-extremos { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 12px 14px; background: var(--cafe-oscuro); color: #e8dac5; }
+  /* patrón 5: margin auto */
+  .m-auto { display: flex; gap: 8px; padding: 12px 14px; border-top: 2px dotted var(--borde); background: var(--blanco); }
+  .m-auto .siguiente { margin-left: auto; }
+  .m-auto a { color: var(--terracota); }
+  /* patrón 6: centrar */
+  .m-centro { display: flex; justify-content: center; align-items: center; height: 130px; background: var(--blanco); }
+  .m-centro .caja-hija { font-weight: bold; }
+
+  /* ---------- errores y tabla ---------- */
+  .errores { display: flex; flex-wrap: wrap; gap: 16px; }
+  .error {
+    flex: 1 1 300px;
+    background: var(--blanco); border: 1px solid var(--borde); border-left: 5px solid var(--cruzado);
+    border-radius: 8px; padding: 16px 18px;
+  }
+  .error h3 { margin: 0 0 6px; font-size: 19px; color: var(--cafe-oscuro); }
+  .error p { margin: 0 0 6px; }
+  .error .bien { color: #2f6b3a; font-weight: bold; }
+  .error .mal { color: var(--cruzado); font-weight: bold; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--borde); vertical-align: top; }
+  th { background: var(--crema-c); color: var(--cafe-oscuro); }
+  tr:last-child td { border-bottom: 0; }
+  .tabla-envoltorio { overflow-x: auto; }
+
+  .recursos { display: flex; flex-wrap: wrap; gap: 14px; }
+  .recurso {
+    flex: 1 1 240px; display: block; text-decoration: none; color: var(--texto);
+    background: var(--blanco); border: 1px solid var(--borde); border-radius: 8px; padding: 16px 18px;
+  }
+  .recurso:hover { border-color: var(--terracota); color: var(--texto); }
+  .recurso strong { display: block; color: var(--terracota); font-size: 17px; margin-bottom: 2px; }
+
+  footer {
+    background: var(--cafe-oscuro); color: #e8dac5; font-size: 14px; padding: 18px 20px;
+  }
+  footer .ancho { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+  @media (max-width: 600px) {
+    .portada h1 { font-size: 34px; }
+    section > h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="portada">
+  <div class="ancho">
+    <div class="etiquetas">
+      <span class="etiqueta">Diseño Web Básico</span>
+      <span class="etiqueta amarilla">Semana 04</span>
+      <span class="etiqueta">Material complementario</span>
+    </div>
+    <h1>Diagramar con Flexbox</h1>
+    <p>Una guía visual para ordenar los elementos de tu blog: el menú, las columnas, las tarjetas y el pie de página. Mueve los controles y mira qué pasa.</p>
+  </div>
+</header>
+
+<nav class="indice" aria-label="Secciones de la guía">
+  <ul>
+    <li><a href="#ideas">3 ideas</a></li>
+    <li><a href="#ejes">Los ejes</a></li>
+    <li><a href="#laboratorio">Laboratorio</a></li>
+    <li><a href="#patrones">Patrones del blog</a></li>
+    <li><a href="#errores">Errores frecuentes</a></li>
+    <li><a href="#flex-o-float">¿flex o float?</a></li>
+    <li><a href="#practica">Practica más</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ================= 3 IDEAS ================= -->
+  <section id="ideas">
+    <h2>Flex en 3 ideas</h2>
+    <p class="bajada">Si recuerdas estas tres ideas, el resto son detalles que puedes buscar cuando los necesites.</p>
+    <div class="ideas">
+      <article class="idea">
+        <span class="num">1</span>
+        <h3>Va en el padre</h3>
+        <p><code>display: flex</code> se escribe en el <strong>contenedor</strong>: el <code>&lt;ul&gt;</code> del menú, el <code>&lt;div&gt;</code> que agrupa las tarjetas…</p>
+      </article>
+      <article class="idea">
+        <span class="num">2</span>
+        <h3>Ordena a los hijos directos</h3>
+        <p>Solo se mueven los <strong>hijos directos</strong> del contenedor. Los nietos siguen comportándose como siempre.</p>
+      </article>
+      <article class="idea">
+        <span class="num">3</span>
+        <h3>Trabaja sobre dos ejes</h3>
+        <p><code>justify-content</code> alinea en el <strong>eje principal</strong>, y <code>align-items</code>, en el <strong>eje cruzado</strong>.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= EJES ================= -->
+  <section id="ejes">
+    <h2>Los dos ejes</h2>
+    <p class="bajada">Por defecto, los hijos se ordenan en <strong>fila</strong> (<code>flex-direction: row</code>). Si cambias a <code>column</code>, los ejes se intercambian.</p>
+    <div class="ejes">
+      <figure>
+        <svg id="svg-ejes" viewBox="0 0 560 300" role="img" aria-labelledby="t-ejes">
+          <title id="t-ejes">Contenedor flex con tres hijos y sus dos ejes</title>
+          <defs>
+            <marker id="fp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f6f78"/></marker>
+            <marker id="fc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b5492f"/></marker>
+          </defs>
+          <rect x="70" y="40" width="420" height="200" rx="10" fill="#fbf8f2" stroke="#a8512e" stroke-width="2" stroke-dasharray="7 5"/>
+          <text x="80" y="32" font-size="14" fill="#6b4a2f" font-weight="bold">contenedor  { display: flex; }</text>
+          <g id="hijos"></g>
+          <g id="eje-p"></g>
+          <g id="eje-c"></g>
+        </svg>
+        <figcaption id="cap-ejes">flex-direction: row → el eje principal es horizontal.</figcaption>
+      </figure>
+      <div class="explica">
+        <p><span class="chip-eje p">Eje principal</span>: la dirección en la que se ordenan los hijos. Se alinea con <code>justify-content</code>.</p>
+        <p><span class="chip-eje c">Eje cruzado</span>: el eje perpendicular. Se alinea con <code>align-items</code>.</p>
+        <p>En un menú horizontal, <code>justify-content: center</code> centra los enlaces <strong>a lo ancho</strong>, y <code>align-items: center</code> los centra <strong>a lo alto</strong>.</p>
+        <button type="button" class="boton-eje" id="cambiar-eje">Cambiar a flex-direction: column</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LABORATORIO ================= -->
+  <section id="laboratorio">
+    <h2>Laboratorio</h2>
+    <p class="bajada">Cambia las propiedades del contenedor y observa cómo se mueven los platos. El código de abajo se actualiza solo: puedes copiarlo.</p>
+    <div class="lab">
+      <div class="controles" id="controles">
+        <div class="control">
+          <span><code>display</code></span>
+          <div class="opciones" data-prop="display">
+            <button type="button" data-val="block">block</button>
+            <button type="button" data-val="flex">flex</button>
+          </div>
+        </div>
+        <div class="control">
+          <span><code>flex-direction</code></span>
+          <div class="opciones" data-prop="flex-direction">
+            <button type="button" data-val="row">row</button>
+            <button type="button" data-val="column">column</button>
+            <button type="button" data-val="row-reverse">row-reverse</button>
+          </div>
+        </div>
+        <div class="control">
+          <span><code>justify-content</code> · eje principal</span>
+          <div class="opciones" data-prop="justify-content">
+            <button type="button" data-val="flex-start">flex-start</button>
+            <button type="button" data-val="center">center</button>
+            <button type="button" data-val="flex-end">flex-end</button>
+            <button type="button" data-val="space-between">space-between</button>
+            <button type="button" data-val="space-around">space-around</button>
+          </div>
+        </div>
+        <div class="control">
+          <span><code>align-items</code> · eje cruzado</span>
+          <div class="opciones" data-prop="align-items">
+            <button type="button" data-val="stretch">stretch</button>
+            <button type="button" data-val="flex-start">flex-start</button>
+            <button type="button" data-val="center">center</button>
+            <button type="button" data-val="flex-end">flex-end</button>
+          </div>
+        </div>
+        <div class="control">
+          <span><code>flex-wrap</code></span>
+          <div class="opciones" data-prop="flex-wrap">
+            <button type="button" data-val="nowrap">nowrap</button>
+            <button type="button" data-val="wrap">wrap</button>
+          </div>
+        </div>
+        <div class="control">
+          <span><code>gap</code>: <output id="gap-valor">16px</output></span>
+          <input type="range" id="gap" min="0" max="48" step="4" value="16" aria-label="gap en píxeles">
+        </div>
+        <div class="control">
+          <span>Cantidad de platos</span>
+          <div class="fila-items">
+            <button type="button" id="menos" aria-label="Quitar un plato">−</button>
+            <output id="cantidad">4</output>
+            <button type="button" id="mas" aria-label="Agregar un plato">+</button>
+          </div>
+        </div>
+        <div class="control">
+          <span>En los hijos</span>
+          <label><input type="checkbox" id="crecer"> <span><code>flex: 1 1 140px</code> (crecen y se reparten el ancho)</span></label>
+        </div>
+      </div>
+
+      <div class="resultado">
+        <div class="marco">
+          <p class="marco-titulo">.platos (el contenedor)</p>
+          <div id="escenario"></div>
+        </div>
+        <pre class="codigo" id="codigo" aria-live="polite"></pre>
+        <div class="pista" id="pista"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PATRONES ================= -->
+  <section id="patrones">
+    <h2>Patrones del Blog de Cocina</h2>
+    <p class="bajada">Son los mismos seis usos de flex que tiene el ejemplo de la clase (<code>semana-04/material-clase</code>). Cada vista previa es CSS real: achica la ventana para ver cómo se acomodan.</p>
+
+    <div class="patrones">
+
+      <article class="patron">
+        <div class="info">
+          <h3>1 · Menú en una fila</h3>
+          <p>Los <code>&lt;li&gt;</code> son bloques y se apilan. Con flex en el <code>&lt;ul&gt;</code>, quedan uno al lado del otro.</p>
+          <p class="donde">En el ejemplo: <code>.navegacion ul</code></p>
+          <pre class="codigo"><span class="s">.navegacion ul</span> {
+  <span class="p">list-style</span>: <span class="v">none</span>;
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">flex-wrap</span>: <span class="v">wrap</span>;
+  <span class="p">justify-content</span>: <span class="v">center</span>;
+  <span class="p">gap</span>: <span class="v">8px</span>;
+}</pre>
+        </div>
+        <div class="vista">
+          <div class="mini">
+            <nav class="m-menu" aria-label="Ejemplo de menú">
+              <ul>
+                <li><a href="#patrones">Inicio</a></li>
+                <li><a href="#patrones">Charquicán</a></li>
+                <li><a href="#patrones">Bife a lo pobre</a></li>
+                <li><a href="#patrones">Tiramisú</a></li>
+                <li><a href="#patrones">Papayas a la crema</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </article>
+
+      <article class="patron">
+        <div class="info">
+          <h3>2 · Dos columnas: contenido y lateral</h3>
+          <p>El contenedor tiene dos hijos. Con <code>flex</code> en cada hijo decides cuánto crece: el contenido crece 3 veces más que la columna lateral. Con <code>flex-wrap</code>, en el celular la lateral baja.</p>
+          <p class="donde">En el ejemplo: <code>.disposicion</code>, <code>.contenido</code> y <code>.lateral</code></p>
+          <pre class="codigo"><span class="s">.disposicion</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">flex-wrap</span>: <span class="v">wrap</span>;
+  <span class="p">align-items</span>: <span class="v">flex-start</span>;
+  <span class="p">gap</span>: <span class="v">24px</span>;
+}
+<span class="s">.contenido</span> { <span class="p">flex</span>: <span class="v">3 1 560px</span>; }  <span class="c">/* crece | se encoge | base */</span>
+<span class="s">.lateral</span>   { <span class="p">flex</span>: <span class="v">1 1 240px</span>; }</pre>
+        </div>
+        <div class="vista">
+          <div class="mini">
+            <div class="m-cols">
+              <div class="principal"><strong>main.contenido</strong><br>La receta, las tarjetas y todo el texto principal.</div>
+              <div class="lado"><strong>aside.lateral</strong><br>Sobre el blog.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="patron">
+        <div class="info">
+          <h3>3 · Tarjetas que se acomodan solas</h3>
+          <p>Cada tarjeta parte con un ancho base y crece para llenar la fila. Si no caben, bajan a la siguiente línea. No hace falta calcular porcentajes.</p>
+          <p class="donde">En el ejemplo: <code>.tarjetas</code> y <code>.tarjeta</code></p>
+          <pre class="codigo"><span class="s">.tarjetas</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">flex-wrap</span>: <span class="v">wrap</span>;
+  <span class="p">gap</span>: <span class="v">20px</span>;
+}
+<span class="s">.tarjeta</span> { <span class="p">flex</span>: <span class="v">1 1 240px</span>; }</pre>
+        </div>
+        <div class="vista">
+          <div class="mini">
+            <div class="m-tarjetas">
+              <div class="caja-hija"><strong>🍖 Platos de fondo</strong><br>Charquicán · Bife</div>
+              <div class="caja-hija"><strong>🍮 Postres</strong><br>Tiramisú · Papayas</div>
+              <div class="caja-hija"><strong>🥗 Ensaladas</strong><br>Chilena · Chancho en piedra</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="patron">
+        <div class="info">
+          <h3>4 · Un elemento en cada extremo</h3>
+          <p><code>space-between</code> deja el primer hijo pegado a la izquierda, el último a la derecha y reparte el espacio sobrante entre ellos.</p>
+          <p class="donde">En el ejemplo: <code>.pie-pagina .contenedor</code></p>
+          <pre class="codigo"><span class="s">.pie-pagina .contenedor</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">flex-wrap</span>: <span class="v">wrap</span>;
+  <span class="p">justify-content</span>: <span class="v">space-between</span>;
+}</pre>
+        </div>
+        <div class="vista">
+          <div class="mini">
+            <div class="m-extremos">
+              <span>Blog de Cocina Chilena © 2026</span>
+              <span>Diseño Web Básico · DUOC UC</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="patron">
+        <div class="info">
+          <h3>5 · Empujar un elemento con <code>margin-left: auto</code></h3>
+          <p>En un contenedor flex, un margen <code>auto</code> se come todo el espacio libre. Sirve para mandar el enlace «Siguiente» a la derecha, aunque esté solo.</p>
+          <p class="donde">En el ejemplo: <code>.receta-pie .siguiente</code></p>
+          <pre class="codigo"><span class="s">.receta-pie</span> { <span class="p">display</span>: <span class="v">flex</span>; }
+<span class="s">.receta-pie .siguiente</span> { <span class="p">margin-left</span>: <span class="v">auto</span>; }</pre>
+        </div>
+        <div class="vista">
+          <div class="mini">
+            <div class="m-auto">
+              <a class="siguiente" href="#patrones">Siguiente: Bife a lo pobre →</a>
+            </div>
+            <div class="m-auto">
+              <a href="#patrones">← Anterior: Charquicán</a>
+              <a class="siguiente" href="#patrones">Siguiente: Tiramisú →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="patron">
+        <div class="info">
+          <h3>6 · Centrar en ambos ejes</h3>
+          <p>El clásico «¿cómo centro un div?». Con flex son dos líneas: <code>justify-content</code> para el ancho y <code>align-items</code> para el alto.</p>
+          <p class="donde">Útil para portadas, avisos o un botón dentro de una caja.</p>
+          <pre class="codigo"><span class="s">.portada</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">justify-content</span>: <span class="v">center</span>;  <span class="c">/* eje principal */</span>
+  <span class="p">align-items</span>: <span class="v">center</span>;      <span class="c">/* eje cruzado */</span>
+  <span class="p">height</span>: <span class="v">300px</span>;
+}</pre>
+        </div>
+        <div class="vista">
+          <div class="mini">
+            <div class="m-centro"><div class="caja-hija">¡Al centro! 🍲</div></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= ERRORES ================= -->
+  <section id="errores">
+    <h2>Errores frecuentes</h2>
+    <p class="bajada">Si flex «no hace nada», casi siempre es uno de estos.</p>
+    <div class="errores">
+      <article class="error">
+        <h3>Poner flex en los hijos</h3>
+        <p><span class="mal">✗</span> <code>.navegacion li { display: flex; }</code></p>
+        <p><span class="bien">✓</span> <code>.navegacion ul { display: flex; }</code></p>
+        <p>Flex se aplica al <strong>padre</strong> de los elementos que quieres ordenar.</p>
+      </article>
+      <article class="error">
+        <h3>Confundir los ejes</h3>
+        <p>Con <code>flex-direction: column</code>, <code>justify-content</code> pasa a alinear <strong>vertical</strong> y <code>align-items</code>, <strong>horizontal</strong>.</p>
+        <p>Pregúntate siempre: ¿cuál es mi eje principal?</p>
+      </article>
+      <article class="error">
+        <h3>Olvidar <code>flex-wrap: wrap</code></h3>
+        <p>Por defecto los hijos <strong>nunca bajan de línea</strong>: se aprietan o se salen del contenedor en el celular.</p>
+        <p>Agrega <code>flex-wrap: wrap</code> a menús, tarjetas y columnas.</p>
+      </article>
+      <article class="error">
+        <h3>Separar con margin y gap a la vez</h3>
+        <p>Si las tarjetas ya tienen <code>margin</code> lateral y además usas <code>gap</code>, el espacio se duplica.</p>
+        <p>En flex, separa con <code>gap</code> y deja el <code>margin</code> para casos puntuales.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= FLEX O FLOAT ================= -->
+  <section id="flex-o-float">
+    <h2>¿flex o float?</h2>
+    <p class="bajada">La pauta de la sumativa pide usar <code>float</code>. Úsalo para lo que fue creado y deja el resto a flex.</p>
+    <div class="tabla-envoltorio">
+      <table>
+        <thead>
+          <tr><th>Quiero…</th><th>Uso</th><th>En el ejemplo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Poner el menú en fila</td><td><code>display: flex</code></td><td><code>.navegacion ul</code></td></tr>
+          <tr><td>Contenido y columna lateral lado a lado</td><td><code>display: flex</code></td><td><code>.disposicion</code></td></tr>
+          <tr><td>Tarjetas en una grilla que se adapta</td><td><code>display: flex</code> + <code>flex-wrap</code></td><td><code>.tarjetas</code></td></tr>
+          <tr><td>Que el texto <strong>rodee</strong> una imagen</td><td><code>float: left</code> o <code>right</code></td><td><code>.foto-receta</code></td></tr>
+          <tr><td>Que un título empiece debajo de la imagen flotada</td><td><code>clear: both</code></td><td><code>.receta h3</code></td></tr>
+          <tr><td>Que la caja contenga a la imagen flotada</td><td><code>display: flow-root</code></td><td><code>.receta</code></td></tr>
+          <tr><td>Datos cortos en una sola línea</td><td><code>display: inline</code></td><td><code>.datos-receta li</code></td></tr>
+          <tr><td>Que un enlace ocupe su propia línea</td><td><code>display: block</code></td><td><code>.tarjeta a</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= PRÁCTICA ================= -->
+  <section id="practica">
+    <h2>Practica más</h2>
+    <p class="bajada">Diez minutos de juego valen más que una página de teoría.</p>
+    <div class="recursos">
+      <a class="recurso" href="https://flexboxfroggy.com/#es" target="_blank" rel="noopener">
+        <strong>Flexbox Froggy 🐸</strong>
+        Juego en español: lleva a cada rana a su hoja usando propiedades de flex. 24 niveles.
+      </a>
+      <a class="recurso" href="https://developer.mozilla.org/es/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener">
+        <strong>MDN · Flexbox</strong>
+        La referencia completa, con ejemplos que puedes editar en el navegador.
+      </a>
+      <a class="recurso" href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">
+        <strong>CSS-Tricks · A Guide to Flexbox</strong>
+        Una guía visual de todas las propiedades, separada por contenedor e hijos (en inglés).
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ancho">
+    <span>Diseño Web Básico · EXP2 Semana 4 · Campus Virtual DUOC UC</span>
+    <span>Material complementario · Prof. Alejandro Becerra</span>
+  </div>
+</footer>
+
+<script>
+  /* ---------- Diagrama de ejes ---------- */
+  (function () {
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var hijos = document.getElementById('hijos');
+    var ejeP = document.getElementById('eje-p');
+    var ejeC = document.getElementById('eje-c');
+    var cap = document.getElementById('cap-ejes');
+    var boton = document.getElementById('cambiar-eje');
+    var columna = false;
+
+    function el(tag, attrs, txt) {
+      var n = document.createElementNS(svgNS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      if (txt) n.textContent = txt;
+      return n;
+    }
+    function limpiar(g) { while (g.firstChild) g.removeChild(g.firstChild); }
+
+    function dibujar() {
+      limpiar(hijos); limpiar(ejeP); limpiar(ejeC);
+      var nombres = ['hijo 1', 'hijo 2', 'hijo 3'];
+      nombres.forEach(function (n, i) {
+        var x, y, w, h;
+        if (!columna) { x = 90 + i * 112; y = 62; w = 100; h = 70; }
+        else { x = 90; y = 52 + i * 60; w = 150; h = 50; }
+        hijos.appendChild(el('rect', { x: x, y: y, width: w, height: h, rx: 6, fill: '#f3e9d8', stroke: '#6b4a2f', 'stroke-width': 2 }));
+        hijos.appendChild(el('text', { x: x + w / 2, y: y + h / 2 + 5, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 'bold', fill: '#4a3221' }, n));
+      });
+      if (!columna) {
+        ejeP.appendChild(el('line', { x1: 80, y1: 265, x2: 480, y2: 265, stroke: '#1f6f78', 'stroke-width': 3, 'marker-end': 'url(#fp)' }));
+        ejeP.appendChild(el('text', { x: 280, y: 290, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 'bold', fill: '#1f6f78' }, 'eje principal → justify-content'));
+        ejeC.appendChild(el('line', { x1: 515, y1: 48, x2: 515, y2: 232, stroke: '#b5492f', 'stroke-width': 3, 'marker-end': 'url(#fc)' }));
+        ejeC.appendChild(el('text', { x: 535, y: 140, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 'bold', fill: '#b5492f', transform: 'rotate(90 535 140)' }, 'eje cruzado → align-items'));
+      } else {
+        ejeP.appendChild(el('line', { x1: 515, y1: 48, x2: 515, y2: 232, stroke: '#1f6f78', 'stroke-width': 3, 'marker-end': 'url(#fp)' }));
+        ejeP.appendChild(el('text', { x: 535, y: 140, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 'bold', fill: '#1f6f78', transform: 'rotate(90 535 140)' }, 'eje principal → justify-content'));
+        ejeC.appendChild(el('line', { x1: 80, y1: 265, x2: 480, y2: 265, stroke: '#b5492f', 'stroke-width': 3, 'marker-end': 'url(#fc)' }));
+        ejeC.appendChild(el('text', { x: 280, y: 290, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 'bold', fill: '#b5492f' }, 'eje cruzado → align-items'));
+      }
+      cap.textContent = columna
+        ? 'flex-direction: column → el eje principal es vertical.'
+        : 'flex-direction: row → el eje principal es horizontal.';
+      boton.textContent = columna ? 'Volver a flex-direction: row' : 'Cambiar a flex-direction: column';
+    }
+    boton.addEventListener('click', function () { columna = !columna; dibujar(); });
+    dibujar();
+  })();
+
+  /* ---------- Laboratorio ---------- */
+  (function () {
+    var platos = ['Charquicán', 'Bife a lo pobre', 'Tiramisú', 'Papayas', 'Pastel de choclo', 'Sopaipillas', 'Empanadas', 'Mote con huesillo'];
+    var tipos = ['plato de fondo', 'plato de fondo', 'postre', 'postre', 'plato de fondo', 'para la once', 'para compartir', 'bebida'];
+    var estado = {
+      'display': 'flex',
+      'flex-direction': 'row',
+      'justify-content': 'flex-start',
+      'align-items': 'stretch',
+      'flex-wrap': 'nowrap',
+      'gap': 16,
+      'cantidad': 4,
+      'crecer': false
+    };
+    var escenario = document.getElementById('escenario');
+    var codigo = document.getElementById('codigo');
+    var pista = document.getElementById('pista');
+
+    function pintarPlatos() {
+      escenario.innerHTML = '';
+      for (var i = 0; i < estado.cantidad; i++) {
+        var d = document.createElement('div');
+        d.className = 'plato';
+        d.innerHTML = platos[i] + '<small>' + tipos[i] + '</small>';
+        if (estado.crecer) d.style.flex = '1 1 140px';
+        escenario.appendChild(d);
+      }
+    }
+
+    function aplicar() {
+      escenario.style.display = estado.display;
+      escenario.style.flexDirection = estado['flex-direction'];
+      escenario.style.justifyContent = estado['justify-content'];
+      escenario.style.alignItems = estado['align-items'];
+      escenario.style.flexWrap = estado['flex-wrap'];
+      escenario.style.gap = estado.gap + 'px';
+      pintarPlatos();
+
+      document.querySelectorAll('.opciones').forEach(function (grupo) {
+        var prop = grupo.getAttribute('data-prop');
+        grupo.querySelectorAll('button').forEach(function (b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-val') === estado[prop] ? 'true' : 'false');
+        });
+      });
+      document.getElementById('gap-valor').textContent = estado.gap + 'px';
+      document.getElementById('cantidad').textContent = estado.cantidad;
+
+      var flexActivo = estado.display === 'flex';
+      var l = [];
+      l.push('<span class="s">.platos</span> {');
+      l.push('  <span class="p">display</span>: <span class="v">' + estado.display + '</span>;');
+      if (flexActivo) {
+        l.push('  <span class="p">flex-direction</span>: <span class="v">' + estado['flex-direction'] + '</span>;');
+        l.push('  <span class="p">justify-content</span>: <span class="v">' + estado['justify-content'] + '</span>;  <span class="c">/* eje principal */</span>');
+        l.push('  <span class="p">align-items</span>: <span class="v">' + estado['align-items'] + '</span>;  <span class="c">/* eje cruzado */</span>');
+        l.push('  <span class="p">flex-wrap</span>: <span class="v">' + estado['flex-wrap'] + '</span>;');
+        l.push('  <span class="p">gap</span>: <span class="v">' + estado.gap + 'px</span>;');
+      } else {
+        l.push('  <span class="c">/* sin flex: las demás propiedades no hacen nada */</span>');
+      }
+      l.push('}');
+      if (estado.crecer) {
+        l.push('');
+        l.push('<span class="s">.plato</span> {');
+        l.push('  <span class="p">flex</span>: <span class="v">1 1 140px</span>;  <span class="c">/* crece | se encoge | base */</span>');
+        l.push('}');
+      }
+      codigo.innerHTML = l.join('\n');
+
+      var p;
+      if (!flexActivo) p = '🔎 Con <code>display: block</code> los platos se apilan uno debajo del otro, ocupando todo el ancho. Es el comportamiento normal de un <code>&lt;div&gt;</code>.';
+      else if (estado['flex-direction'] === 'column') p = '🔄 En <code>column</code> los ejes se intercambian: ahora <code>justify-content</code> mueve los platos en vertical y <code>align-items</code>, en horizontal.';
+      else if (estado.crecer) p = '📐 Con <code>flex: 1 1 140px</code> cada plato parte de 140px y crece para llenar la fila. <code>justify-content</code> casi no se nota porque no queda espacio libre.';
+      else if (estado['flex-wrap'] === 'nowrap' && estado.cantidad > 5) p = '⚠️ Con <code>nowrap</code> los platos nunca bajan de línea: se aprietan o se salen. Prueba <code>flex-wrap: wrap</code>.';
+      else if (estado['align-items'] === 'stretch') p = '📏 Con <code>stretch</code> (el valor por defecto), todos los platos se estiran hasta igualar al más alto de la fila.';
+      else if (estado['justify-content'] === 'space-between') p = '↔️ <code>space-between</code>: el primero a la izquierda, el último a la derecha y el espacio sobrante repartido entre ellos. Así está el pie de página del ejemplo.';
+      else p = '💡 Prueba agregar platos hasta que no quepan y luego cambia <code>flex-wrap</code> a <code>wrap</code>.';
+      pista.innerHTML = p;
+    }
+
+    document.querySelectorAll('.opciones').forEach(function (grupo) {
+      grupo.addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (!b) return;
+        estado[grupo.getAttribute('data-prop')] = b.getAttribute('data-val');
+        aplicar();
+      });
+    });
+    document.getElementById('gap').addEventListener('input', function (e) { estado.gap = +e.target.value; aplicar(); });
+    document.getElementById('mas').addEventListener('click', function () { if (estado.cantidad < platos.length) { estado.cantidad++; aplicar(); } });
+    document.getElementById('menos').addEventListener('click', function () { if (estado.cantidad > 1) { estado.cantidad--; aplicar(); } });
+    document.getElementById('crecer').addEventListener('change', function (e) { estado.crecer = e.target.checked; aplicar(); });
+
+    aplicar();
+  })();
+</script>
+</body>
+</html>
