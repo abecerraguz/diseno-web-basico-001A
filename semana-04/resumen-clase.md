@@ -136,9 +136,9 @@ Estilos de borde: `solid`, `dashed`, `dotted`, `double`, `groove`, `ridge`, `ins
 
 Diagramar es decidir **dónde va cada elemento**. Hoy la herramienta principal para eso es **flexbox**. Acordamos usarla en el curso porque es como se diagrama en la industria. La guía oficial no la incluye: es un complemento de clase.
 
-> 🧪 **Guía visual interactiva:** [ábrela en la web](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/flexbox-guia-visual.html) y mueve los controles. También puedes descargar [`flexbox-guia-visual.html`](./flexbox-guia-visual.html) y abrirla en tu navegador.
+> 🧪 **Guía visual interactiva:** [ábrela en la web](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/index.html) y mueve los controles. 
 > 📄 **Cheat sheet de flexbox:** [`flexboxCheatSheet.pdf`](./flexboxCheatSheet.pdf) reúne todas las propiedades del contenedor y de los hijos en una hoja. Tenla a mano mientras diagramas.
-> 📎 **Ejemplo de la clase:** [míralo publicado](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/material-clase/): el Blog de Cocina diagramado completo con flex. El código está en [`material-clase/`](./material-clase/LEEME.md).
+> 📎 **Ejemplo de la clase:** [míralo publicado](https://abecerraguz.github.io/diseno-web-basico-001A/semana-04/material-clase/index.html): el Blog de Cocina diagramado completo con flex. El código está en [`material-clase/`](./material-clase/LEEME.md).
 
 ### Flex en 3 ideas
 
